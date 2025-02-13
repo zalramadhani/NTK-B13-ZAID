@@ -4,6 +4,7 @@ import utils.Hooks;
 
 public class Exc1 extends Hooks {
 	public static void main(String[] args) {
+		int a = 12;
 
 	}
 

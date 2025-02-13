@@ -7,30 +7,43 @@ import utils.Hooks;
 
 public class Exc1 extends Hooks {
 	public static void main(String[] args) throws InterruptedException {
-		
-		setUp("edge"); 
-		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-		
-		Thread.sleep(1000);
-		WebElement userNameField = driver.findElement(By.name("username")); 
-		userNameField.sendKeys("admin");
-		
-		Thread.sleep(500); 
-		
-		//Password Field
-		WebElement passwordField = driver.findElement(By.name("password")); 
-		passwordField.sendKeys("admin123");
-		
-		Thread.sleep(500); 
-		
-		WebElement loginBtn = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button")); 
-		
-		loginBtn.click(); 
-		
-		// The header Text is the Dashboard. 
-		
-		tearDown(); 
-		
-	}
 
+		setUp("edge");
+		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+
+		Thread.sleep(1000);
+		WebElement userNameField = driver.findElement(By.name("username"));
+		userNameField.sendKeys("admin");
+
+		Thread.sleep(500);
+
+		// Password Field
+		WebElement passwordField = driver.findElement(By.name("password"));
+		passwordField.sendKeys("admin123");
+
+		Thread.sleep(500);
+
+		WebElement loginBtn = driver
+				.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button"));
+
+		loginBtn.click();
+
+		// The header Text is the Dashboard.
+
+		
+
+		WebElement header = driver.findElement(By.tagName("h6"));
+		String headerText = header.getText();
+		System.out.println("Header text found: " + headerText); // Additional logging
+
+		if (headerText.equals("Dashboard")) {
+			System.out.println("Login successful. Header verified: " + headerText);
+		} else {
+			System.out.println("Login failed. Expected 'Dashboard', but got: " + headerText);
+		}
+
+		// Close the browser
+		tearDown();
+
+	}
 }

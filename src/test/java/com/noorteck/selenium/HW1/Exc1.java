@@ -29,20 +29,21 @@ public class Exc1 extends Hooks {
 		loginBtn.click();
 
 		// The header Text is the Dashboard.
-
 		
+//		WebElement header = driver.findElement(By.linkText("Dashboard"));
+		System.out.println("BEFORE"); // To TEST THE LOCATION OF THE ERROR 
+		WebElement header = driver.findElement(By.xpath("//.[.='Dashboard']"));
+		System.out.println("AFTER"); //TO TEST THE LOCATION OF THE ERROR 
+		System.out.println(header);
+        String confText = "Dashboard"; 
+        String headerText = header.getText(); 
+        
+        if (headerText.contains(confText)) {
+            System.out.println("Login successful. Header verified: " + header);
+        } else {
+            System.out.println("Login failed. Expected 'Dashboard', but got: " + header);
+        }
 
-		WebElement header = driver.findElement(By.tagName("h6"));
-		String headerText = header.getText();
-		System.out.println("Header text found: " + headerText); // Additional logging
-
-		if (headerText.equals("Dashboard")) {
-			System.out.println("Login successful. Header verified: " + headerText);
-		} else {
-			System.out.println("Login failed. Expected 'Dashboard', but got: " + headerText);
-		}
-
-		// Close the browser
 		tearDown();
 
 	}
